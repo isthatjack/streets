@@ -229,7 +229,7 @@ local target_textbox = targetSection:addTextbox("Selected Target", "Name", funct
     end
 end)
 
-local StreetsPage = UI:addPage("Streets", "936053408")
+local StreetsPage = UI:addPage("Streets", "2812081613")
 
 local playerSection = StreetsPage:addSection("Player")
 
