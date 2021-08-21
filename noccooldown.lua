@@ -10,7 +10,7 @@ local IsSetUp, Names = {}, {
 }
 
 local Connect = game.Loaded.Connect
-local spawn = task.spawn
+local spawn, find = task.spawn, table.find
 
 local PlayingAnim = false
 local SetupClient = function(Gun)
@@ -65,12 +65,12 @@ local onCharacterAdded = function(newCharacter)
 		onChildAdded = nil
 	end
 	
-	onChildAdded = newCharacter.ChildAdded:Connect(function(Tool)
-		if IsA(Tool, 'Tool') and table.find(Names, Tool.Name) and not table.find(IsSetUp, Tool) then
+	onChildAdded = Connect(newCharacter.ChildAdded, function(Tool)
+		if IsA(Tool, 'Tool') and find(Names, Tool.Name) and not find(IsSetUp, Tool) then
 			SetupClient(Tool); IsSetUp[#IsSetUp + 1] = Tool
 		end
 	end)
 end
 
 onCharacterAdded(Character)
-LocalPlayer.CharacterAdded:Connect(onCharacterAdded)
+Connect(LocalPlayer.CharacterAdded, onCharacterAdded)
